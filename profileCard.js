@@ -119,6 +119,9 @@ class ProfileCard extends HTMLElement
     super();
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
+    this.shadowRoot.querySelector(".user__name").innerText = this.getAttribute("name");
+    this.shadowRoot.querySelector(".user__age").innerText = this.getAttribute("age");
+    this.shadowRoot.querySelector(".user__location").innerText = this.getAttribute("location");
   }
 }
 
