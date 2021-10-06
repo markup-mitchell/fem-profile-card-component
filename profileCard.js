@@ -1,3 +1,12 @@
+async function getUser()
+{
+  const user = await fetch("https://randomuser.me/api");
+  return user.json();
+}
+
+const user = getUser();
+
+
 const template = document.createElement("template");
 template.innerHTML = `
   <style>
@@ -123,6 +132,14 @@ class ProfileCard extends HTMLElement
     this.shadowRoot.querySelector(".user__age").innerText = this.getAttribute("age");
     this.shadowRoot.querySelector(".user__location").innerText = this.getAttribute("location");
   }
+
+  data() { return { name: "Fat Fuck" }; };
+  setName()
+  {
+    this.shadowRoot.querySelector(".user__name").innerText = this.getAttribute(data().name);
+  }
+
 }
 
 window.customElements.define("profile-card", ProfileCard);
+ProfileCard.setName();
