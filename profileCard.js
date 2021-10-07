@@ -98,7 +98,7 @@ template.innerHTML = `
 
   .data-item__count {
     font-size: var(--text__large);
-    color: var(--color__grey--dark)
+    color: var(--color__grey--dark);
     font-weight: 700;
   }
 
