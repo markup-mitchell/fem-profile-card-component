@@ -76,7 +76,7 @@ template.innerHTML = `
 
   .user__location {
     display: block;
-    color: var(--color__black);
+    color: var(--color__grey--dark);
     font-size: var(--text__medium);
     font-weight: 500;
     margin-top: 1rem;
@@ -98,13 +98,13 @@ template.innerHTML = `
 
   .data-item__count {
     font-size: var(--text__large);
-    color: var(--color__grey--dark);
+    color: var(--color__grey--dark)
     font-weight: 700;
   }
 
   .data-item__type {
     font-size: var(--text__small);
-    color: var(--color__grey--dark);
+    color: var(--color__black);
     letter-spacing: 2px;
     margin-top: 0.75rem
   }
