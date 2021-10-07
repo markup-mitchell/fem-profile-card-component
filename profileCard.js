@@ -1,4 +1,24 @@
-const template = document.createElement("template");
+async function getUser() {
+  const data = await fetch( "https://randomuser.me/api" );
+  const user = await data.json();
+  console.log( user.results[0] );
+  return user.results[0];
+}
+
+function newUser() {
+  getUser().then( ( user ) => {
+    profileName.innerText = `${user.name.first} ${user.name.last}`;
+    profileAge.innerText = user.dob.age;
+    profileLocation.innerText = user.location.city;
+    document.querySelector( "profile-card" ).setAttribute( "imagePath", user.picture.large );
+  } );
+}
+
+function randomValue( min, max ) {
+  return Math.floor( ( Math.random() * max ) + min );
+}
+
+const template = document.createElement( "template" );
 template.innerHTML = `
   <style>
   h1 {
@@ -38,6 +58,7 @@ template.innerHTML = `
     outline: solid 0.6rem white;
     outline-offset: -1px;
     margin-top: -6.5rem;
+    max-width: 96px;
   }
 
   .user__name {
@@ -103,40 +124,42 @@ template.innerHTML = `
     </figure>
     <div class="user__data">
       <p class="user__data-item">
-        <span class="data-item__count">80K</span>
+        <span class="data-item__count js-followers">80K</span>
         <span class="data-item__type">Followers</span>
       </p>
       <p class="user__data-item">
-        <span class="data-item__count">803K </span>
+        <span class="data-item__count js-likes">803K </span>
         <span class="data-item__type">Likes</span>
       </p>
       <p class="user__data-item">
-        <span class="data-item__count">1.4K </span>
+        <span class="data-item__count js-photos">1.4K </span>
         <span class="data-item__type">Photos</span>
       </p>
     </div>
   </article>
 `;
 
-class ProfileCard extends HTMLElement
-{
-  constructor()
-  {
+class ProfileCard extends HTMLElement {
+  static get observedAttributes() { return ["imagepath"]; };
+  constructor() {
     super();
-    this.attachShadow({ mode: "open" });
-    this.shadowRoot.appendChild(template.content.cloneNode(true));
-    // this.shadowRoot.querySelector(".user__name").innerText = this.getAttribute("name");
-    // this.shadowRoot.querySelector(".user__age").innerText = this.getAttribute("age");
-    // this.shadowRoot.querySelector(".user__location").innerText = this.getAttribute("location");
+    this.attachShadow( { mode: "open" } );
+    this.shadowRoot.appendChild( template.content.cloneNode( true ) );
   }
 
-  data() { return { name: "Fat Fuck" }; };
-  setName()
-  {
-    this.shadowRoot.querySelector(".user__name").innerText = this.getAttribute(data().name);
+  connectedCallback() {
+    setTimeout( () => newUser(), 5000 );
+  }
+
+  attributeChangedCallback( name, oldValue, newValue ) {
+    this.shadowRoot.querySelector( ".user__image" ).src = newValue;
+    this.shadowRoot.querySelector( ".js-followers" ).innerText = `${randomValue( 0, 102 )}K`;
+    this.shadowRoot.querySelector( ".js-likes" ).innerText = `${randomValue( 0, 999 )}K`;
+    this.shadowRoot.querySelector( ".js-photos" ).innerText = `${( randomValue( 1000, 10000 ) / 1000 ).toFixed( 1 )}K`;
+
   }
 
 }
 
-window.customElements.define("profile-card", ProfileCard);
-ProfileCard.setName();
+window.customElements.define( "profile-card", ProfileCard );
+;

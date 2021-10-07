@@ -1,15 +1,16 @@
-document.querySelector("#profileName").innerText = "hedsdc";
+async function getUser() {
+  const data = await fetch( "https://randomuser.me/api" );
+  const user = await data.json();
+  console.log( user.results[0] );
+  return user.results[0];
+}
 
-// let profileName = document.querySelector("#profileName");
+function newUser() {
 
-  // async function getUser()
-  // {
-  //   const data = await fetch("https://randomuser.me/api");
-  //   const user = await data.json();
-  //   profileCard.setAttribute("name", "Fat Fuck");
-  //   await console.log(user);
-  // }
-
-  // getUser().then((data) => profileName.innerText = "Hamish Fanny"};
-
-
+  getUser().then( ( user ) => {
+    profileName.innerText = `${user.name.first} ${user.name.last}`;
+    profileAge.innerText = user.dob.age;
+    profileLocation.innerText = user.location.city;
+    document.querySelector( "profile-card" ).setAttribute( "imagePath", user.picture.large );
+  } );
+}
