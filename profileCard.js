@@ -1,12 +1,3 @@
-async function getUser()
-{
-  const user = await fetch("https://randomuser.me/api");
-  return user.json();
-}
-
-const user = getUser();
-
-
 const template = document.createElement("template");
 template.innerHTML = `
   <style>
@@ -98,9 +89,15 @@ template.innerHTML = `
       <img class="user__image" src="./images/image-victor.jpg" alt="" />
       <figcaption>
         <h1>
-          <span class="user__name">Victor Crest</span>
-          <span class="user__age">26</span>
-          <span class="user__location">London</span>
+          <span class="user__name">
+          <slot name="name">name</slot>
+          </span>
+          <span class="user__age">
+          <slot name="age">age</slot>
+          </span>
+          <span class="user__location">
+          <slot name="location">London</slot>
+          </span>
         </h1>
       </figcaption>
     </figure>
@@ -128,9 +125,9 @@ class ProfileCard extends HTMLElement
     super();
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
-    this.shadowRoot.querySelector(".user__name").innerText = this.getAttribute("name");
-    this.shadowRoot.querySelector(".user__age").innerText = this.getAttribute("age");
-    this.shadowRoot.querySelector(".user__location").innerText = this.getAttribute("location");
+    // this.shadowRoot.querySelector(".user__name").innerText = this.getAttribute("name");
+    // this.shadowRoot.querySelector(".user__age").innerText = this.getAttribute("age");
+    // this.shadowRoot.querySelector(".user__location").innerText = this.getAttribute("location");
   }
 
   data() { return { name: "Fat Fuck" }; };

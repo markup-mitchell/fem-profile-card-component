@@ -24,7 +24,11 @@
 	<body>
 		<div class="layout">
 			<div class="layout__slot">
-				<profile-card age="44" location="Glasgow"></profile-card>
+				<profile-card>
+					<span id="profileName" slot="name">Gaylord McAnal</span>
+					<span slot="age">44</span>
+					<span slot="location">Glasgow</span>
+				</profile-card>
 				<button onclick="change"></button>
 			</div>
 		</div>
