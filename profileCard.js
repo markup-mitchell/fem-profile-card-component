@@ -76,7 +76,7 @@ template.innerHTML = `
 
   .user__location {
     display: block;
-    color: var(--color__grey--dark);
+    color: var(--color__black);
     font-size: var(--text__medium);
     font-weight: 500;
     margin-top: 1rem;
