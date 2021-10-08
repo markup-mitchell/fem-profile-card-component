@@ -25,6 +25,7 @@ template.innerHTML = `
     color: var(--color__black);
     text-align: center;
     margin: 0;
+    padding: 3.5rem;
   }
   .card {
     font-family: var(--font);
@@ -46,10 +47,6 @@ template.innerHTML = `
     font-size: var(--text__large);
     background-color: var(--color__white);
     border-bottom: 1px solid var(--color__grey--light);
-  }
-
-  .user__profile figcaption {
-    padding: 3.5rem;
   }
 
   .user__image {
@@ -88,13 +85,14 @@ template.innerHTML = `
 
   .user__data-item {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
   }
 
   .data-item__count {
     font-size: var(--text__large);
     font-weight: 700;
+    margin: 0;
   }
 
   .data-item__type {
@@ -105,9 +103,8 @@ template.innerHTML = `
   }
   </style>
   <article class="card">
-    <figure class="user__profile">
+    <section class="user__profile">
       <img class="user__image" src="./images/image-victor.jpg" alt="" />
-      <figcaption>
         <h1>
           <span class="user__name">
           <slot name="name">name</slot>
@@ -119,21 +116,20 @@ template.innerHTML = `
           <slot name="location">London</slot>
           </span>
         </h1>
-      </figcaption>
-    </figure>
+    </section>
     <div class="user__data">
-      <p class="user__data-item">
-        <span class="data-item__count js-followers">80K</span>
-        <span class="data-item__type">Followers</span>
-      </p>
-      <p class="user__data-item">
-        <span class="data-item__count js-likes">803K </span>
-        <span class="data-item__type">Likes</span>
-      </p>
-      <p class="user__data-item">
-        <span class="data-item__count js-photos">1.4K </span>
-        <span class="data-item__type">Photos</span>
-      </p>
+      <section class="user__data-item">
+      <h2 class="data-item__type">Followers</h2>
+        <p class="data-item__count js-followers">80K</p>
+      </section>
+      <section class="user__data-item">
+      <h2 class="data-item__type">Likes</h2>
+        <p class="data-item__count js-likes">803K </p>
+      </section>
+      <section class="user__data-item">
+      <h2 class="data-item__type">Photos</h2>
+        <p class="data-item__count js-photos">1.4K </p>
+      </section>
     </div>
   </article>
 `;
@@ -147,9 +143,9 @@ class ProfileCard extends HTMLElement {
   }
 
   connectedCallback() {
-    setTimeout( () => newUser(), 5000 );
-    setTimeout( () => newUser(), 10000 );
-    setTimeout( () => newUser(), 15000 );
+    // setTimeout( () => newUser(), 5000 );
+    // setTimeout( () => newUser(), 10000 );
+    // setTimeout( () => newUser(), 15000 );
   }
 
   attributeChangedCallback( name, oldValue, newValue ) {
