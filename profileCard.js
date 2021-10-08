@@ -1,23 +1,27 @@
-async function getUser() {
-  const data = await fetch( "https://randomuser.me/api" );
+async function getUser()
+{
+  const data = await fetch("https://randomuser.me/api");
   const user = await data.json();
   return user.results[0];
 }
 
-function newUser() {
-  getUser().then( ( user ) => {
-    profileName.innerText = `${user.name.first} ${user.name.last}`;
+function newUser()
+{
+  getUser().then((user) =>
+  {
+    profileName.innerText = `${ user.name.first } ${ user.name.last }`;
     profileAge.innerText = user.dob.age;
     profileLocation.innerText = user.location.city;
-    document.querySelector( "profile-card" ).setAttribute( "imagePath", user.picture.large );
-  } );
+    document.querySelector("profile-card").setAttribute("imagePath", user.picture.large);
+  });
 }
 
-function randomValue( min, max ) {
-  return Math.floor( ( Math.random() * max ) + min );
+function randomValue(min, max)
+{
+  return Math.floor((Math.random() * max) + min);
 }
 
-const template = document.createElement( "template" );
+const template = document.createElement("template");
 template.innerHTML = `
   <style>
   h1 {
@@ -91,6 +95,7 @@ template.innerHTML = `
 
   .data-item__count {
     font-size: var(--text__large);
+    color: var(--color__black);
     font-weight: 700;
     margin: 0;
   }
@@ -134,29 +139,33 @@ template.innerHTML = `
   </article>
 `;
 
-class ProfileCard extends HTMLElement {
+class ProfileCard extends HTMLElement
+{
   static get observedAttributes() { return ["imagepath"]; };
-  constructor() {
+  constructor()
+  {
     super();
-    this.attachShadow( { mode: "open" } );
-    this.shadowRoot.appendChild( template.content.cloneNode( true ) );
+    this.attachShadow({ mode: "open" });
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
-  connectedCallback() {
-    setTimeout( () => newUser(), 5000 );
-    setTimeout( () => newUser(), 10000 );
-    setTimeout( () => newUser(), 15000 );
+  connectedCallback()
+  {
+    setTimeout(() => newUser(), 5000);
+    setTimeout(() => newUser(), 10000);
+    setTimeout(() => newUser(), 15000);
   }
 
-  attributeChangedCallback( name, oldValue, newValue ) {
-    this.shadowRoot.querySelector( ".user__image" ).src = newValue;
-    this.shadowRoot.querySelector( ".js-followers" ).innerText = `${randomValue( 0, 102 )}K`;
-    this.shadowRoot.querySelector( ".js-likes" ).innerText = `${randomValue( 0, 999 )}K`;
-    this.shadowRoot.querySelector( ".js-photos" ).innerText = `${( randomValue( 1000, 10000 ) / 1000 ).toFixed( 1 )}K`;
+  attributeChangedCallback(name, oldValue, newValue)
+  {
+    this.shadowRoot.querySelector(".user__image").src = newValue;
+    this.shadowRoot.querySelector(".js-followers").innerText = `${ randomValue(0, 102) }K`;
+    this.shadowRoot.querySelector(".js-likes").innerText = `${ randomValue(0, 999) }K`;
+    this.shadowRoot.querySelector(".js-photos").innerText = `${ (randomValue(1000, 10000) / 1000).toFixed(1) }K`;
 
   }
 
 }
 
-window.customElements.define( "profile-card", ProfileCard );
+window.customElements.define("profile-card", ProfileCard);
 ;

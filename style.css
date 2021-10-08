@@ -1,77 +1,77 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 :root {
-  font-family: sans-serif;
-  font-size: 8px;
-  --font: 'Kumbh Sans', sans-serif;
-  --card-padding: 3rem 4rem;
-  --color__black: hsl(229, 23%, 23%);
-  --color__grey--dark: hsl(227, 10%, 46%);
-  --color__grey: hsl(0, 0%, 59%);
-  --color__teal: hsl(185, 75%, 39%);
-  --color__grey--light: #ddd;
-  --color__white: white;
-  --text__small: 1.25rem;
-  --text__medium: 1.875rem;
-  --text__large: 2.25rem;
-  --tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+	font-family: sans-serif;
+	font-size: 8px;
+	--font: 'Kumbh Sans', sans-serif;
+	--card-padding: 2.5rem 4rem;
+	--color__black: hsl(229, 23%, 23%);
+	--color__grey--dark: hsl(227, 10%, 46%);
+	--color__grey: hsl(0, 0%, 59%);
+	--color__teal: hsl(185, 75%, 39%);
+	--color__grey--light: #ddd;
+	--color__white: white;
+	--text__small: 1.25rem;
+	--text__medium: 1.75rem;
+	--text__large: 2.25rem;
+	--tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 body {
-  width: 100vw;
+	width: 100vw;
 }
 
 .layout {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  background-color: var(--color__teal);
-  background-repeat: no-repeat;
-  background-size: contain;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 3rem;
-  overflow: hidden;
+	position: relative;
+	width: 100%;
+	min-height: 100vh;
+	background-color: var(--color__teal);
+	background-repeat: no-repeat;
+	background-size: contain;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 3rem;
+	overflow: hidden;
 }
 
 .layout__slot {
-  width: 100%;
-  position: relative;
+	width: 100%;
+	position: relative;
 }
 
 .bg__top,
 .bg__bottom {
-  position: absolute;
-  z-index: 0;
+	position: absolute;
+	z-index: 0;
 }
 .bg__top {
-  top: -600px;
-  left: -750px;
+	top: -600px;
+	left: -750px;
 }
 
 .bg__bottom {
-  bottom: -500px;
-  right: -750px;
+	bottom: -500px;
+	right: -750px;
 }
 
 @media (min-width: 425px) {
-  .layout__slot {
-    max-width: 327px;
-  }
+	.layout__slot {
+		max-width: 327px;
+	}
 }
 
 @media (min-width: 1440px) {
-  .bg__top {
-    top: -400px;
-    left: -50px;
-  }
+	.bg__top {
+		top: -400px;
+		left: -50px;
+	}
 
-  .bg__bottom {
-    bottom: -500px;
-    right: 20px;
-  }
+	.bg__bottom {
+		bottom: -500px;
+		right: 20px;
+	}
 }
