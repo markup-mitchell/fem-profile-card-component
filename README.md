@@ -12,6 +12,12 @@ Right at the start I got sidetracked thinking about the best way to structure th
 
 That works fine for document-like web-content, but can often be tricky with app-like components. I may make a video about the different options I considered and the thought process I followed to end up where I did, but I'm done for the moment.
 
+#### UPDATE
+
+The structure I'd originally published had a `<figure>` wrapping the `<img>` and a `<figcaption>` containing `<h1>[name] [age] [loaction]<h1>`. I thought this would tick all the boxes from an a11y perspective, but I guess I was trying to be too clever. This pattern didn't work well with the NVDA screen reader tests I did, so I've simplified things. 
+
+The stats were originally in `<p>` tags to read like sentences, eg "80k followers". I've changed this to make each a headed `<section>` for improved navigablity with NVDA (and I hope other screen readers). 
+
 ### Approximate the design
 
 I have access to the figma files, but I deliberately refrained from using them for this challenge. I wanted to see how close I could get just from the .jpg images and style guide that come with the free version.
