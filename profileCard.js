@@ -143,9 +143,9 @@ class ProfileCard extends HTMLElement {
   }
 
   connectedCallback() {
-    // setTimeout( () => newUser(), 5000 );
-    // setTimeout( () => newUser(), 10000 );
-    // setTimeout( () => newUser(), 15000 );
+    setTimeout( () => newUser(), 5000 );
+    setTimeout( () => newUser(), 10000 );
+    setTimeout( () => newUser(), 15000 );
   }
 
   attributeChangedCallback( name, oldValue, newValue ) {
